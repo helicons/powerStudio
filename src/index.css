@@ -1,0 +1,86 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Variables globales ─── */
+:root {
+  --bg-primary:    #0d1117;
+  --bg-secondary:  #111827;
+  --bg-card:       #1a2235;
+  --acento:        #7c3aed;
+  --acento-suave:  #a78bfa;
+  --texto-primary: #f1f5f9;
+  --texto-secondary: #94a3b8;
+  --borde:         rgba(255, 255, 255, 0.08);
+}
+
+/* ─── Reset base ─── */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Lenis controla el scroll — desactivar scroll nativo en html */
+html {
+  scroll-behavior: auto;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--texto-primary);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+
+  /* Cursor personalizado: ocultar el del sistema */
+  cursor: none;
+}
+
+/* ─── Cursor personalizado ─── */
+#cursor-dot {
+  position: fixed;
+  top: 0; left: 0;
+  width: 8px; height: 8px;
+  background: var(--acento);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: transform 0.1s ease, width 0.3s ease, height 0.3s ease, background 0.3s ease;
+  will-change: transform;
+}
+
+#cursor-ring {
+  position: fixed;
+  top: 0; left: 0;
+  width: 36px; height: 36px;
+  border: 1px solid rgba(124, 58, 237, 0.5);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  transition: transform 0.12s ease, width 0.3s ease, height 0.3s ease, opacity 0.3s ease;
+  will-change: transform;
+}
+
+/* ─── Selección de texto ─── */
+::selection {
+  background: rgba(124, 58, 237, 0.3);
+  color: var(--texto-primary);
+}
+
+/* ─── Scrollbar personalizada ─── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--bg-primary); }
+::-webkit-scrollbar-thumb { background: var(--acento); border-radius: 2px; }
+
+/* ─── Links base ─── */
+a {
+  cursor: none;
+  text-decoration: none;
+}
