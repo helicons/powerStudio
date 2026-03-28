@@ -13,15 +13,15 @@ import * as THREE from 'three'
    - GSAP split-text + CTA magnético
 ───────────────────────────────────────────────────────────── */
 export default function Hero() {
-  const canvasRef  = useRef(null)
-  const ghostRef   = useRef(null)   // el texto outline gigante de fondo
-  const line1Ref   = useRef([])     // palabras línea 1
-  const line2Ref   = useRef([])     // palabras línea 2
-  const line3Ref   = useRef(null)   // línea 3 accent
-  const subRef     = useRef(null)
-  const btnRef     = useRef(null)
-  const statsRef   = useRef([])
-  const vertRef    = useRef(null)
+  const canvasRef = useRef(null)
+  const ghostRef = useRef(null)   // el texto outline gigante de fondo
+  const line1Ref = useRef([])     // palabras línea 1
+  const line2Ref = useRef([])     // palabras línea 2
+  const line3Ref = useRef(null)   // línea 3 accent
+  const subRef = useRef(null)
+  const btnRef = useRef(null)
+  const statsRef = useRef([])
+  const vertRef = useRef(null)
   const lineDecRef = useRef(null)
 
   // ── Three.js: partículas de fondo ──────────────────────────
@@ -29,8 +29,8 @@ export default function Hero() {
     const canvas = canvasRef.current
     if (!canvas) return
 
-    const scene    = new THREE.Scene()
-    const camera   = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000)
+    const scene = new THREE.Scene()
+    const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000)
     camera.position.z = 6
 
     const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true })
@@ -38,31 +38,31 @@ export default function Hero() {
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
     renderer.setClearColor(0x000000, 0)
 
-    const COUNT     = 260
+    const COUNT = 260
     const positions = new Float32Array(COUNT * 3)
-    const colors    = new Float32Array(COUNT * 3)
-    const speeds    = new Float32Array(COUNT)
-    const offsets   = new Float32Array(COUNT)
+    const colors = new Float32Array(COUNT * 3)
+    const speeds = new Float32Array(COUNT)
+    const offsets = new Float32Array(COUNT)
 
     const c1 = new THREE.Color('#2d1b69')
     const c2 = new THREE.Color('#4c1d95')
     const c3 = new THREE.Color('#5b21b6')
 
     for (let i = 0; i < COUNT; i++) {
-      positions[i * 3]     = (Math.random() - 0.5) * 24
+      positions[i * 3] = (Math.random() - 0.5) * 24
       positions[i * 3 + 1] = (Math.random() - 0.5) * 14
       positions[i * 3 + 2] = (Math.random() - 0.5) * 8
       const col = [c1, c2, c3][Math.floor(Math.random() * 3)]
-      colors[i * 3]     = col.r
+      colors[i * 3] = col.r
       colors[i * 3 + 1] = col.g
       colors[i * 3 + 2] = col.b
-      speeds[i]  = 0.2 + Math.random() * 0.8
+      speeds[i] = 0.2 + Math.random() * 0.8
       offsets[i] = Math.random() * Math.PI * 2
     }
 
     const geometry = new THREE.BufferGeometry()
     geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3))
-    geometry.setAttribute('color',    new THREE.BufferAttribute(colors, 3))
+    geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3))
 
     const material = new THREE.PointsMaterial({
       size: 0.065, vertexColors: true, transparent: true, opacity: 0.55, sizeAttenuation: true,
@@ -80,7 +80,7 @@ export default function Hero() {
       const t = clock.getElapsedTime()
       for (let i = 0; i < COUNT; i++) {
         const ix = i * 3
-        posArr[ix]     += Math.sin(t * speeds[i] * 0.3 + offsets[i]) * 0.001
+        posArr[ix] += Math.sin(t * speeds[i] * 0.3 + offsets[i]) * 0.001
         posArr[ix + 1] += Math.cos(t * speeds[i] * 0.2 + offsets[i]) * 0.0008
       }
       geometry.attributes.position.needsUpdate = true
@@ -160,8 +160,8 @@ export default function Hero() {
     const onMove = (e) => {
       const r = btn.getBoundingClientRect()
       gsap.to(btn, {
-        x: (e.clientX - (r.left + r.width  / 2)) * 0.28,
-        y: (e.clientY - (r.top  + r.height / 2)) * 0.28,
+        x: (e.clientX - (r.left + r.width / 2)) * 0.28,
+        y: (e.clientY - (r.top + r.height / 2)) * 0.28,
         duration: 0.5, ease: 'power2.out',
       })
     }
@@ -176,24 +176,24 @@ export default function Hero() {
   const words2 = ['que']
 
   const stats = [
-    { value: '4+',  label: 'Años' },
-    { value: '60+', label: 'Proyectos' },
-    { value: '48h', label: 'Entrega media' },
+    { value: '3+', label: 'Años' },
+    { value: '40+', label: 'Proyectos' },
+    { value: '72h', label: 'Entrega media' },
     { value: '★★★★★', label: 'Clientes' },
   ]
 
   return (
     <section
       style={{
-        position:        'relative',
-        height:          '100vh',
-        minHeight:       '600px',
-        display:         'flex',
-        flexDirection:   'column',
-        justifyContent:  'center',
-        overflow:        'hidden',
+        position: 'relative',
+        height: '100vh',
+        minHeight: '600px',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        overflow: 'hidden',
         backgroundColor: '#0d1117',
-        padding:         '0 clamp(1.5rem, 6vw, 5rem)',
+        padding: '0 clamp(1.5rem, 6vw, 5rem)',
       }}
     >
       {/* ── Canvas Three.js ── */}
@@ -213,22 +213,22 @@ export default function Hero() {
         ref={ghostRef}
         aria-hidden="true"
         style={{
-          position:      'absolute',
-          right:         '-2vw',
-          top:           '50%',
-          transform:     'translateY(-52%)',
-          zIndex:        1,
-          fontFamily:    'Syne, sans-serif',
-          fontWeight:    800,
-          fontSize:      'clamp(120px, 18vw, 260px)',
+          position: 'absolute',
+          right: '-2vw',
+          top: '50%',
+          transform: 'translateY(-52%)',
+          zIndex: 1,
+          fontFamily: 'Syne, sans-serif',
+          fontWeight: 800,
+          fontSize: 'clamp(120px, 18vw, 260px)',
           letterSpacing: '-0.04em',
-          lineHeight:    0.85,
+          lineHeight: 0.85,
           // texto solo con stroke, sin relleno — el efecto "ghost"
-          color:             'transparent',
-          WebkitTextStroke:  '1px rgba(124, 58, 237, 0.12)',
-          userSelect:        'none',
-          pointerEvents:     'none',
-          whiteSpace:        'nowrap',
+          color: 'transparent',
+          WebkitTextStroke: '1px rgba(124, 58, 237, 0.12)',
+          userSelect: 'none',
+          pointerEvents: 'none',
+          whiteSpace: 'nowrap',
         }}
       >
         STUDIO
@@ -244,12 +244,12 @@ export default function Hero() {
             style={{ width: '40px', height: '1px', background: '#7c3aed', flexShrink: 0 }}
           />
           <span style={{
-            fontFamily:    'DM Sans, sans-serif',
-            fontWeight:    300,
-            fontSize:      '0.68rem',
+            fontFamily: 'DM Sans, sans-serif',
+            fontWeight: 300,
+            fontSize: '0.68rem',
             letterSpacing: '0.22em',
             textTransform: 'uppercase',
-            color:         '#7c3aed',
+            color: '#7c3aed',
           }}>
             Freelance · Madrid · 2024
           </span>
@@ -269,13 +269,13 @@ export default function Hero() {
                     key={i}
                     ref={(el) => (line1Ref.current[i] = el)}
                     style={{
-                      display:       'inline-block',
-                      fontFamily:    'Syne, sans-serif',
-                      fontWeight:    800,
-                      fontSize:      'clamp(54px, 8.5vw, 112px)',
+                      display: 'inline-block',
+                      fontFamily: 'Syne, sans-serif',
+                      fontWeight: 800,
+                      fontSize: 'clamp(54px, 8.5vw, 112px)',
                       letterSpacing: '-0.035em',
-                      lineHeight:    0.95,
-                      color:         '#f1f5f9',
+                      lineHeight: 0.95,
+                      color: '#f1f5f9',
                     }}
                   >
                     {word}
@@ -292,14 +292,14 @@ export default function Hero() {
                     key={i}
                     ref={(el) => (line2Ref.current[i] = el)}
                     style={{
-                      display:          'inline-block',
-                      fontFamily:       'Syne, sans-serif',
-                      fontWeight:       800,
-                      fontSize:         'clamp(54px, 8.5vw, 112px)',
-                      letterSpacing:    '-0.035em',
-                      lineHeight:       0.95,
+                      display: 'inline-block',
+                      fontFamily: 'Syne, sans-serif',
+                      fontWeight: 800,
+                      fontSize: 'clamp(54px, 8.5vw, 112px)',
+                      letterSpacing: '-0.035em',
+                      lineHeight: 0.95,
                       // outline / ghost — sutil contraste tipográfico
-                      color:            'transparent',
+                      color: 'transparent',
                       WebkitTextStroke: '2px rgba(241,245,249,0.3)',
                     }}
                   >
@@ -312,13 +312,13 @@ export default function Hero() {
                   <span
                     ref={line3Ref}
                     style={{
-                      display:       'inline-block',
-                      fontFamily:    'Syne, sans-serif',
-                      fontWeight:    800,
-                      fontSize:      'clamp(54px, 8.5vw, 112px)',
+                      display: 'inline-block',
+                      fontFamily: 'Syne, sans-serif',
+                      fontWeight: 800,
+                      fontSize: 'clamp(54px, 8.5vw, 112px)',
                       letterSpacing: '-0.035em',
-                      lineHeight:    0.95,
-                      color:         '#7c3aed',
+                      lineHeight: 0.95,
+                      color: '#7c3aed',
                     }}
                   >
                     impacta.
@@ -332,13 +332,13 @@ export default function Hero() {
               ref={subRef}
               initial={{ opacity: 0 }}
               style={{
-                fontFamily:    'DM Sans, sans-serif',
-                fontWeight:    300,
-                fontSize:      'clamp(14px, 1.5vw, 18px)',
-                color:         '#94a3b8',
-                marginTop:     'clamp(1.5rem, 3vw, 2.5rem)',
-                maxWidth:      '440px',
-                lineHeight:    1.65,
+                fontFamily: 'DM Sans, sans-serif',
+                fontWeight: 300,
+                fontSize: 'clamp(14px, 1.5vw, 18px)',
+                color: '#94a3b8',
+                marginTop: 'clamp(1.5rem, 3vw, 2.5rem)',
+                maxWidth: '440px',
+                lineHeight: 1.65,
               }}
             >
               Webs premium entregadas en días, no semanas.
@@ -355,23 +355,23 @@ export default function Hero() {
                 href="#contacto"
                 data-cursor-hover
                 style={{
-                  display:      'inline-flex',
-                  alignItems:   'center',
-                  gap:          '0.75rem',
-                  padding:      '1rem 2.5rem',
-                  background:   '#7c3aed',
-                  color:        '#f1f5f9',
-                  fontFamily:   'DM Sans, sans-serif',
-                  fontWeight:   500,
-                  fontSize:     '0.92rem',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '0.75rem',
+                  padding: '1rem 2.5rem',
+                  background: '#7c3aed',
+                  color: '#f1f5f9',
+                  fontFamily: 'DM Sans, sans-serif',
+                  fontWeight: 500,
+                  fontSize: '0.92rem',
                   letterSpacing: '0.03em',
-                  position:     'relative',
-                  overflow:     'hidden',
+                  position: 'relative',
+                  overflow: 'hidden',
                 }}
               >
                 Hablemos
                 <svg width="15" height="15" viewBox="0 0 16 16" fill="none">
-                  <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               </a>
 
@@ -380,22 +380,22 @@ export default function Hero() {
                 href="#proyectos"
                 data-cursor-hover
                 style={{
-                  fontFamily:    'DM Sans, sans-serif',
-                  fontWeight:    400,
-                  fontSize:      '0.82rem',
+                  fontFamily: 'DM Sans, sans-serif',
+                  fontWeight: 400,
+                  fontSize: '0.82rem',
                   letterSpacing: '0.1em',
                   textTransform: 'uppercase',
-                  color:         '#475569',
-                  display:       'inline-flex',
-                  alignItems:    'center',
-                  gap:           '0.4rem',
-                  borderBottom:  '1px solid rgba(255,255,255,0.08)',
+                  color: '#475569',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '0.4rem',
+                  borderBottom: '1px solid rgba(255,255,255,0.08)',
                   paddingBottom: '2px',
                 }}
               >
                 Ver trabajo
                 <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                  <path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               </a>
             </motion.div>
@@ -405,19 +405,19 @@ export default function Hero() {
           <div
             ref={vertRef}
             style={{
-              display:         'none',    // oculto en mobile — activado en desktop via style tag
-              flexShrink:      0,
-              alignSelf:       'center',
-              writingMode:     'vertical-rl',
+              display: 'none',    // oculto en mobile — activado en desktop via style tag
+              flexShrink: 0,
+              alignSelf: 'center',
+              writingMode: 'vertical-rl',
               textOrientation: 'mixed',
-              transform:       'rotate(180deg)',
-              fontFamily:      'DM Sans, sans-serif',
-              fontWeight:      300,
-              fontSize:        '0.65rem',
-              letterSpacing:   '0.22em',
-              textTransform:   'uppercase',
-              color:           '#334155',
-              paddingBottom:   '1rem',
+              transform: 'rotate(180deg)',
+              fontFamily: 'DM Sans, sans-serif',
+              fontWeight: 300,
+              fontSize: '0.65rem',
+              letterSpacing: '0.22em',
+              textTransform: 'uppercase',
+              color: '#334155',
+              paddingBottom: '1rem',
             }}
             className="hero-vertical-text"
           >
@@ -429,17 +429,17 @@ export default function Hero() {
       {/* ── Strip de stats — parte inferior ── */}
       <div
         style={{
-          position:   'absolute',
-          bottom:     0,
-          left:       0,
-          right:      0,
-          zIndex:     2,
-          padding:    '1.5rem clamp(1.5rem, 6vw, 5rem)',
-          display:    'flex',
+          position: 'absolute',
+          bottom: 0,
+          left: 0,
+          right: 0,
+          zIndex: 2,
+          padding: '1.5rem clamp(1.5rem, 6vw, 5rem)',
+          display: 'flex',
           alignItems: 'center',
-          gap:        'clamp(1.5rem, 4vw, 4rem)',
-          borderTop:  '1px solid rgba(255,255,255,0.05)',
-          flexWrap:   'wrap',
+          gap: 'clamp(1.5rem, 4vw, 4rem)',
+          borderTop: '1px solid rgba(255,255,255,0.05)',
+          flexWrap: 'wrap',
         }}
       >
         {stats.map((stat, i) => (
@@ -449,21 +449,21 @@ export default function Hero() {
             style={{ display: 'flex', flexDirection: 'column', gap: '0.15rem' }}
           >
             <span style={{
-              fontFamily:    'Syne, sans-serif',
-              fontWeight:    700,
-              fontSize:      'clamp(1rem, 1.8vw, 1.4rem)',
+              fontFamily: 'Syne, sans-serif',
+              fontWeight: 700,
+              fontSize: 'clamp(1rem, 1.8vw, 1.4rem)',
               letterSpacing: '-0.02em',
-              color:         '#f1f5f9',
+              color: '#f1f5f9',
             }}>
               {stat.value}
             </span>
             <span style={{
-              fontFamily:    'DM Sans, sans-serif',
-              fontWeight:    300,
-              fontSize:      '0.68rem',
+              fontFamily: 'DM Sans, sans-serif',
+              fontWeight: 300,
+              fontSize: '0.68rem',
               letterSpacing: '0.1em',
               textTransform: 'uppercase',
-              color:         '#475569',
+              color: '#475569',
             }}>
               {stat.label}
             </span>
