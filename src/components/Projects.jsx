@@ -375,7 +375,13 @@ export default function Projects() {
           >
             {secondary.map((project, i) => (
               <div key={project.id} style={{ background: '#0d1117' }}>
-                <ProjectCard project={project} index={i + 1} isFeatured={false} />
+                {project.url ? (
+                  <a href={project.url} target="_blank" rel="noopener noreferrer" style={{ display: 'block', textDecoration: 'none' }}>
+                    <ProjectCard project={project} index={i + 1} isFeatured={false} />
+                  </a>
+                ) : (
+                  <ProjectCard project={project} index={i + 1} isFeatured={false} />
+                )}
               </div>
             ))}
           </div>
