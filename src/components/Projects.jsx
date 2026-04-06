@@ -20,21 +20,23 @@ const PROJECTS = [
   },
   {
     id: 2,
-    name: 'Forma Estudio',
-    category: 'E-commerce · UX',
+    name: 'La Trujillana',
+    category: 'E-commerce',
     gradient: 'linear-gradient(135deg, #1a2235 0%, #1e3a5f 60%, #0f172a 100%)',
     accent: '#0369a1',
     year: '2024',
     featured: false,
+    url: 'https://la-trujillana.vercel.app/',
   },
   {
     id: 3,
-    name: 'Nórdica',
-    category: 'Landing · Web App',
+    name: 'Kaes',
+    category: 'Agencia de Limpieza',
     gradient: 'linear-gradient(135deg, #1a2235 0%, #2d1b69 60%, #0d1117 100%)',
     accent: '#6d28d9',
     year: '2023',
     featured: false,
+    url: 'https://kaes-cinematic.vercel.app',
   },
 ]
 
